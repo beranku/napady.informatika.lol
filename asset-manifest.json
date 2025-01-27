@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/napady.informatika.lol/static/css/main.d030a03b.css",
+    "main.js": "/napady.informatika.lol/static/js/main.e0c8dca2.js",
+    "static/js/488.6f4dceed.chunk.js": "/napady.informatika.lol/static/js/488.6f4dceed.chunk.js",
+    "index.html": "/napady.informatika.lol/index.html",
+    "main.d030a03b.css.map": "/napady.informatika.lol/static/css/main.d030a03b.css.map",
+    "main.e0c8dca2.js.map": "/napady.informatika.lol/static/js/main.e0c8dca2.js.map",
+    "488.6f4dceed.chunk.js.map": "/napady.informatika.lol/static/js/488.6f4dceed.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d030a03b.css",
+    "static/js/main.e0c8dca2.js"
+  ]
+}
