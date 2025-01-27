@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 });
 
 export const api = {
-  getUserInfo: () => axiosInstance.get('/uzivatel?demo'),
+  getUserInfo: () => axiosInstance.get('/uzivatel'),
   getProjects: () => axiosInstance.get('/napady'),
   submitRating: (data) => {
     // Convert data to URL encoded format
