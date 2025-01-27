@@ -41,7 +41,7 @@ const App = () => {
           setSelectedProject(project);
           setShowForm(true);
         }}
-        isLoggedIn={!!user} 
+        isLoggedIn={!!user?.nickname} 
       />
 
       {showForm && selectedProject && (
