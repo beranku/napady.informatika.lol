@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import { validationSchema } from '../validation/ratingSchema';
 import styles from './RatingForm.module.css';
 
