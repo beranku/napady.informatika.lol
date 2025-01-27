@@ -1,0 +1,28 @@
+.userSection {
+  float: right;
+  text-align: right;
+}
+
+.username {
+  display: block;
+  padding: 8px 16px 4px;
+  color: #333;
+}
+
+.logoutLink {
+  display: block;
+  padding: 4px 16px 8px;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.logoutLink:hover {
+  text-decoration: underline;
+}
+
+.loginButton {
+  float: right;
+  padding: 8px 16px;
+  text-decoration: none;
+}
