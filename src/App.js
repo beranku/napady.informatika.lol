@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ProjectTable from './components/ProjectTable';
-import RatingForm from './components/RatingForm';
 import UserMenu from './components/UserMenu';
 import { useProjects } from './hooks/useProjects';
 import { useAuth } from './contexts/AuthContext';
@@ -10,23 +9,22 @@ import styles from './App.module.css';
 const App = () => {
   const { projects, loading: projectsLoading } = useProjects();
   const { user, loading: authLoading } = useAuth();
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [showForm, setShowForm] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
   if (authLoading || projectsLoading) {
     return <p>Načítání informací...</p>;
   }
 
-  const handleRatingSubmit = async (values, { setSubmitting }) => {
+  const handleRatingSubmit = async (projectData) => {
     try {
-      await api.submitRating(values);
+      const ratingData = {
+        ...projectData,
+        userId: user.id
+      };
+      await api.submitRating(ratingData);
       setSubmitMessage('Hodnocení bylo úspěšně uloženo');
-      setShowForm(false);
     } catch (error) {
       setSubmitMessage('Chyba při ukládání hodnocení');
-    } finally {
-      setSubmitting(false);
     }
   };
 
@@ -37,21 +35,9 @@ const App = () => {
       
       <ProjectTable 
         projects={projects} 
-        onRate={project => {
-          setSelectedProject(project);
-          setShowForm(true);
-        }}
+        onRate={handleRatingSubmit}
         isLoggedIn={!!user?.nickname} 
       />
-
-      {showForm && selectedProject && (
-        <RatingForm
-          project={selectedProject}
-          userData={user}
-          onSubmit={handleRatingSubmit}
-          onClose={() => setShowForm(false)}
-        />
-      )}
 
       {submitMessage && (
         <p className={styles.message}>{submitMessage}</p>
