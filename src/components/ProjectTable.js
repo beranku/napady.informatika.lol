@@ -1,29 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRatings } from '../hooks/useRatings';
 import styles from './ProjectTable.module.css';
 
 const ProjectTable = ({ projects, onRate, isLoggedIn }) => {
   const [ratings, setRatings] = useState({});
   const [interests, setInterests] = useState({});
   const [comments, setComments] = useState({});
+  const { ratings: existingRatings, loading: ratingsLoading, refresh: refreshRatings } = useRatings(isLoggedIn);
 
-  const handleSubmit = (e, project) => {
+  // Populate form fields with existing ratings
+  useEffect(() => {
+    if (existingRatings) {
+      const newRatings = {};
+      const newInterests = {};
+      const newComments = {};
+
+      Object.entries(existingRatings).forEach(([projectId, data]) => {
+        newRatings[projectId] = data.votes;
+        newInterests[projectId] = data.interest;
+        newComments[projectId] = data.comment;
+      });
+
+      setRatings(newRatings);
+      setInterests(newInterests);
+      setComments(newComments);
+    }
+  }, [existingRatings]);
+
+  const handleSubmit = async (e, project) => {
     e.preventDefault();
     const rating = ratings[project.row_number];
     const interest = interests[project.row_number];
     const comment = comments[project.row_number] || '';
     if (rating && interest) {
-      onRate({
+      await onRate({
         projectId: project.row_number,
-        emojis: rating,
+        votes: rating,
         interest: interest,
         comment: comment,
         name: project["Název"]
       });
-      setRatings(prev => ({ ...prev, [project.row_number]: '' }));
-      setInterests(prev => ({ ...prev, [project.row_number]: '' }));
-      setComments(prev => ({ ...prev, [project.row_number]: '' }));
+      
+      // Refresh ratings after successful submission
+      await refreshRatings();
     }
   };
+
+  if (ratingsLoading) {
+    return <div>Loading ratings...</div>;
+  }
 
   return (
     <table className={styles.table}>

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const validationSchema = (emojiLimit) => Yup.object({
-  emojis: Yup.string()
+  votes: Yup.string()
     .required('Hodnocení je povinné')
     .max(emojiLimit, `Maximální počet emotikonů je ${emojiLimit}`),
   interest: Yup.string()
