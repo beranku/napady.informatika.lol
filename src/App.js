@@ -18,8 +18,7 @@ const App = () => {
   const handleRatingSubmit = async (projectData) => {
     try {
       const ratingData = {
-        ...projectData,
-        userId: user.id
+        ...projectData
       };
       await api.submitRating(ratingData);
       setSubmitMessage('Hodnocení bylo úspěšně uloženo');
