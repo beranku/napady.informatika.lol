@@ -15,6 +15,6 @@ export const api = {
   getProjects: () => axiosInstance.get('/napady'),
   submitRating: (data) => {
     // Post JSON data directly
-    return axiosInstance.post('/hodnoceni', data);
+    return axiosInstance.put('/hodnoceni', data);
   }
 };
