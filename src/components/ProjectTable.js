@@ -74,6 +74,20 @@ const ProjectTable = ({ projects, onRate, isLoggedIn }) => {
               {isLoggedIn && (
                 <td>
                   <form onSubmit={(e) => handleSubmit(e, project)} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <textarea
+                      placeholder="Přidat komentář..."
+                      value={comments[project.row_number] || ''}
+                      onChange={(e) => setComments(prev => ({
+                        ...prev,
+                        [project.row_number]: e.target.value
+                      }))}
+                      style={{ 
+                        width: '100%',
+                        minHeight: '60px',
+                        resize: 'vertical',
+                        marginTop: '4px'
+                      }}
+                    />
                     <div style={{ display: 'flex', gap: '4px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                         <input
@@ -105,20 +119,6 @@ const ProjectTable = ({ projects, onRate, isLoggedIn }) => {
                       </div>
                       <button type="submit">Uložit</button>
                     </div>
-                    <textarea
-                      placeholder="Přidat komentář..."
-                      value={comments[project.row_number] || ''}
-                      onChange={(e) => setComments(prev => ({
-                        ...prev,
-                        [project.row_number]: e.target.value
-                      }))}
-                      style={{ 
-                        width: '100%',
-                        minHeight: '60px',
-                        resize: 'vertical',
-                        marginTop: '4px'
-                      }}
-                    />
                   </form>
                 </td>
               )}
