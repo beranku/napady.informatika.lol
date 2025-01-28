@@ -59,7 +59,7 @@ const ProjectTable = ({ projects, onRate, isLoggedIn }) => {
           <th>Název</th>
           <th>Popis problému</th>
           <th>Popis řešení</th>
-          {isLoggedIn && <th>Akce</th>}
+          {isLoggedIn && <th>Jak moc chci:<br/>⭐️ aby to vzniklo (0-5)<br/>💪 podílet se na tom (0-5)</th>}
         </tr>
       </thead>
       <tbody>
@@ -101,7 +101,7 @@ const ProjectTable = ({ projects, onRate, isLoggedIn }) => {
                           }))}
                           style={{ width: '50px' }}
                         />
-                        <span style={{ marginLeft: '2px' }}>🎯</span>
+                        <span style={{ marginLeft: '2px' }}>💪</span>
                       </div>
                       <button type="submit">Uložit</button>
                     </div>
