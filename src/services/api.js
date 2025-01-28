@@ -11,12 +11,14 @@ const axiosInstance = axios.create({
 });
 
 export const api = {
-  getUserInfo: () => axiosInstance.get('/uzivatel'),
+  getUserInfo: () => axiosInstance.get('/uzivatel?demo'),
   getProjects: () => axiosInstance.get('/napady'),
   submitRating: (data) => {
     // Convert data to URL encoded format
     const params = new URLSearchParams();
     params.append('emojis', data.emojis);
+    params.append('interest', data.interest);
+    params.append('comment', data.comment);
     params.append('projectId', data.projectId);
     params.append('name', data.name);
     params.append('userId', data.userId);
