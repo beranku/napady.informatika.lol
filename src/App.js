@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div className={styles.container}>
       <UserMenu nickname={user?.nickname} />
-      <h1>Seznam nápadů</h1>
+      <h1>Seznam nápadů | <a href='https://forms.gle/NYjJ4MjJJ4UG7FkB8'>Přidat nový</a></h1>
       
       <ProjectTable 
         projects={projects} 
