@@ -43,7 +43,7 @@ const ProjectTable = ({ projects, onRate, isLoggedIn }) => {
                   <form onSubmit={(e) => handleSubmit(e, project)} style={{ display: 'flex', gap: '4px' }}>
                     <input
                       type="number"
-                      min="1"
+                      min="0"
                       max="5"
                       value={ratings[project.row_number] || ''}
                       onChange={(e) => setRatings(prev => ({ 
@@ -51,7 +51,7 @@ const ProjectTable = ({ projects, onRate, isLoggedIn }) => {
                         [project.row_number]: e.target.value 
                       }))}
                       style={{ width: '50px' }}
-                    />
+                    /><span>⭐️</span>
                     <button type="submit">OK</button>
                   </form>
                 </td>
